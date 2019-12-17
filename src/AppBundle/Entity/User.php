@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -63,6 +64,16 @@ class User
      */
     private $birthday;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Twit", mappedBy="user")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $twits;
+
+    public function __construct()
+    {
+        $this->twits = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -217,5 +228,36 @@ class User
     {
         return $this->birthday;
     }
+
+    /**
+     * @return ArrayCollection|Twit[]
+     */
+    public function getTwits()
+    {
+        return $this->twits;
+    }
+
+    /**
+     * @param Twit $twit
+     */
+    public function addTwit(Twit $twit)
+    {
+        if ($this->twits->contains($twit)) {
+            return;
+        }
+        $this->twits[] = $twit;
+    }
+
+    /**
+     * @param Twit $twit
+     */
+    public function removeTwit(Twit $twit)
+    {
+        if (!$this->twits->contains($twit)) {
+            return;
+        }
+        $this->twits->removeElement($twit);
+    }
+
 }
 
