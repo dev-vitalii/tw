@@ -1,0 +1,76 @@
+/******************************
+Flexbox Layout
+*******************************/
+
+.header, .navi, .sea-creature-container, .genus-details, .notes-container, .footer {
+    display: -webkit-flex;
+    display: flex;
+}
+
+.header {
+    justify-content: space-between;
+}
+
+.navi {
+    flex: 1;
+    justify-content: flex-end;
+}
+
+.main-content {
+    min-height: 300px;
+}
+
+.footer {
+    justify-content: center;
+}
+
+/******************************
+Top Nav General Styling
+*******************************/
+
+body {
+    margin: 0;
+    color: #3a3a3a;
+}
+
+.header {
+    padding: 10px 0;
+    margin: 0 auto;
+    background-color: #81B9BA;
+}
+
+.navi {
+    list-style: none;
+}
+
+.navi {
+    padding-top: 25px;
+}
+
+.navi li a {
+    text-decoration: none;
+    color: #3a3a3a;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
+.navi li a:hover {
+    color: #000;
+}
+
+.navi > li > a:focus, .nav > li > a:hover {
+    background-color: transparent;
+}
+
+.navi li:last-child a {
+    background: #eee;
+    border-radius: 2px;
+    transition: 200ms ease-in-out;
+    padding: 8px 16px 7px;
+}
+
+.navi li:last-child a:hover {
+    background: rgba(200, 200, 200, .5);
+    color: #000;
+}

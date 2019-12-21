@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * User
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var int
@@ -20,21 +21,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=255, unique=true)
-     */
-    private $email;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nickname", type="string", length=255, unique=true)
-     */
-    private $nickname;
+    protected $id;
 
     /**
      * @var string
@@ -53,13 +40,6 @@ class User
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="registered_at", type="datetime")
-     */
-    private $registeredAt;
-
-    /**
-     * @var \DateTime
-     *
      * @ORM\Column(name="birthday", type="datetime", nullable=true)
      */
     private $birthday;
@@ -72,6 +52,7 @@ class User
 
     public function __construct()
     {
+        parent::__construct();
         $this->twits = new ArrayCollection();
     }
 
@@ -83,54 +64,6 @@ class User
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * Set nickname
-     *
-     * @param string $nickname
-     *
-     * @return User
-     */
-    public function setNickname($nickname)
-    {
-        $this->nickname = $nickname;
-
-        return $this;
-    }
-
-    /**
-     * Get nickname
-     *
-     * @return string
-     */
-    public function getNickname()
-    {
-        return $this->nickname;
     }
 
     /**
@@ -179,30 +112,6 @@ class User
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    /**
-     * Set registeredAt
-     *
-     * @param \DateTime $registeredAt
-     *
-     * @return User
-     */
-    public function setRegisteredAt($registeredAt)
-    {
-        $this->registeredAt = $registeredAt;
-
-        return $this;
-    }
-
-    /**
-     * Get registeredAt
-     *
-     * @return \DateTime
-     */
-    public function getRegisteredAt()
-    {
-        return $this->registeredAt;
     }
 
     /**
