@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <a href="{{ path('users_list') }}">Go back</a>
+            <h1>User details</h1>
+            {{ dump(user) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    </style>
+{% endblock %}

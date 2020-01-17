@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="wrapper">
+    <div id="container">
+        <h1>User list</h1>
+        {% for user in users %}
+        <div class="single-usert">
+            <a href="{{ path('single_user', {'id': user.id}) }}">{{ user.username }}</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+<style>
+</style>
+{% endblock %}

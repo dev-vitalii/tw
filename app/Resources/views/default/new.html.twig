@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <h1>Write something</h1>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            <div>
+                <input class="btn btn-primary" type="submit" value="Post" />
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    </style>
+{% endblock %}

@@ -2,6 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Twit;
+use AppBundle\Entity\User;
+
 /**
  * TwitRepository
  *
@@ -10,4 +13,17 @@ namespace AppBundle\Repository;
  */
 class TwitRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @var User $user
+     * @return Twit[]
+     */
+    public function findAllMyTwits(User $user)
+    {
+        return $this->createQueryBuilder('twit')
+            ->andWhere('twit.user = :user')
+            ->setParameter('user', $user)
+            ->orderBy('twit.createdAt', 'DESC')
+            ->getQuery()
+            ->execute();
+    }
 }
