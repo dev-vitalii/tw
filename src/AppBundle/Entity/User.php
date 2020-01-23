@@ -50,10 +50,24 @@ class User extends BaseUser
      */
     private $twits;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Friendship", mappedBy="fromUser")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $outgoingFriendships;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Friendship", mappedBy="toUser")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $incomingFriendships;
+
     public function __construct()
     {
         parent::__construct();
         $this->twits = new ArrayCollection();
+        $this->outgoingFriendships = new ArrayCollection();
+        $this->incomingFriendships = new ArrayCollection();
     }
 
     /**
@@ -166,6 +180,66 @@ class User extends BaseUser
             return;
         }
         $this->twits->removeElement($twit);
+    }
+
+    /**
+     * @return ArrayCollection|User[]
+     */
+    public function getOutgoingFriendships()
+    {
+        return $this->outgoingFriendships;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function addOutgoingFriendships($user)
+    {
+        if ($this->outgoingFriendships->contains($user)) {
+            return;
+        }
+        $this->outgoingFriendships[] = $user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function removeOutgoingFriendships($user)
+    {
+        if (!$this->outgoingFriendships->contains($user)) {
+            return;
+        }
+        $this->outgoingFriendships->removeElement($user);
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getIncomingFriendships()
+    {
+        return $this->incomingFriendships;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function addIncomingFriendships($user)
+    {
+        if ($this->incomingFriendships->contains($user)) {
+            return;
+        }
+        $this->incomingFriendships[] = $user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function removeIncomingFriendships($user)
+    {
+        if (!$this->incomingFriendships->contains($user)) {
+            return;
+        }
+        $this->incomingFriendships->removeElement($user);
     }
 
 }

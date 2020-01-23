@@ -3,9 +3,21 @@
 {% block body %}
     <div id="wrapper">
         <div id="container">
-            <a href="{{ path('users_list') }}">Go back</a>
+            <a href="{{ url('users_list') }}">Go to users list</a>
             <h1>User details</h1>
             {{ dump(user) }}
+            <h2>Outgoing friendship</h2>
+            <ul>
+                {% for outgoing_friend in user.outgoingFriendships %}
+                    <li>{{ dump(outgoing_friend.toUser.username) }}</li>
+                {% endfor %}
+            </ul>
+            <h2>Incoming friendship</h2>
+            <ul>
+                {% for incoming_friend in user.incomingFriendships %}
+                    <li>{{ dump(incoming_friend.fromUser.username) }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

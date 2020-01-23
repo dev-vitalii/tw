@@ -12,7 +12,9 @@
                         <h2>{{ twit.title }}</h2>
                         <p>{{ twit.content }}</p>
                         <div class="twit-info">
-                            Created by <span>{{ twit.user.username }}</span> at <span>{{ twit.createdAt|date("m/d/Y") }}</span>
+                            Created by <span>
+                                <a href="{{ url('single_user', {'id': twit.user.id}) }}">{{ twit.user.username }}</a>
+                            </span> at <span>{{ twit.createdAt|date("m/d/Y") }}</span>
                         </div>
                     </div>
                 {% endfor %}

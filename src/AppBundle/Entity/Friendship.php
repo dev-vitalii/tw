@@ -24,13 +24,13 @@ class Friendship
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="outgoing_friendship")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="outgoingFriendships")
      * @ORM\JoinColumn(nullable=true)
      */
     private $fromUser;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="incoming_friendship")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="incomingFriendships")
      * @ORM\JoinColumn(nullable=true)
      */
     private $toUser;
@@ -40,12 +40,6 @@ class Friendship
      * @ORM\Column(name="approved", type="boolean", )
      */
     private $approved = false;
-
-    public function __construct()
-    {
-        $this->fromUser = new ArrayCollection();
-        $this->toUser = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -58,7 +52,7 @@ class Friendship
     }
 
     /**
-     * @return ArrayCollection
+     * @return User
      */
     public function getFromUser()
     {
@@ -66,7 +60,7 @@ class Friendship
     }
 
     /**
-     * @param ArrayCollection $fromUser
+     * @param User $fromUser
      */
     public function setFromUser($fromUser)
     {
@@ -74,7 +68,7 @@ class Friendship
     }
 
     /**
-     * @return ArrayCollection
+     * @return User
      */
     public function getToUser()
     {
@@ -82,7 +76,7 @@ class Friendship
     }
 
     /**
-     * @param ArrayCollection $toUser
+     * @param User $toUser
      */
     public function setToUser($toUser)
     {

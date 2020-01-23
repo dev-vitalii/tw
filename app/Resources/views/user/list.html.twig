@@ -4,9 +4,18 @@
 <div id="wrapper">
     <div id="container">
         <h1>User list</h1>
+        {{ dump(outgoing_friendship) }}
         {% for user in users %}
         <div class="single-usert">
-            <a href="{{ path('single_user', {'id': user.id}) }}">{{ user.username }}</a>
+            <a href="{{ url('single_user', {'id': user.id}) }}">{{ user.username }}</a>
+            {% if (current_user != null and user.id != current_user.id) %}
+                {% if outgoing_friendship[user.id] is defined %}
+                    {% set friendshipText = 'Withdraw friendship' %}
+                {% else %}
+                    {% set friendshipText = 'Ask for friendship' %}
+                {% endif %}
+                &nbsp<a href="{{ url('friendship_request', {'id': user.id}) }}">{{ friendshipText }}</a>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
